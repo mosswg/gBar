@@ -51,7 +51,7 @@ int main(int argc, char** argv)
     }
 #endif
     else if (strcmp(argv[1], "reload") == 0) {
-        OpenProcess("/bin/pkill", "/bin/pkill", "-USR1", "gBar", nullptr);
+        OpenProcess("/bin/killall", "/bin/allkill", "-USR1", "gBar", nullptr);
         exit(0);
     }
     else
