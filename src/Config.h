@@ -15,6 +15,6 @@ public:
 
     bool centerTime = true;
 
-    static void Load();
+    static void Load(int = 0);
     static const Config& Get();
 };

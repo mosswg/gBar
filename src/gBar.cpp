@@ -8,6 +8,7 @@
 
 #include <cmath>
 #include <cstdio>
+#include <csignal>
 #include <unistd.h>
 
 const char* audioTmpFileOpen = "/tmp/gBar__audio";
@@ -49,10 +50,16 @@ int main(int argc, char** argv)
         BluetoothDevices::Create(window, monitor);
     }
 #endif
+    else if (strcmp(argv[1], "reload") == 0) {
+        OpenProcess("/bin/pkill", "/bin/pkill", "-USR1", "gBar", nullptr);
+        exit(0);
+    }
     else
     {
         Plugin::LoadWidgetFromPlugin(argv[1], window, monitor);
     }
+
+    std::signal(SIGUSR1, Config::Load);
 
     window.Run(argc, argv);
 

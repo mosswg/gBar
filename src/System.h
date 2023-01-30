@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include "Config.h"
+
 namespace System
 {
     // From 0-1, all cores

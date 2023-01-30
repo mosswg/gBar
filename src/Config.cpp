@@ -84,7 +84,7 @@ void AddConfigVar(const std::string& propertyName, T& propertyToSet, std::string
     setConfig = true;
 }
 
-void Config::Load()
+void Config::Load(int)
 {
     const char* xdgConfigHome = getenv("XDG_CONFIG_HOME");
     std::ifstream file;
@@ -101,6 +101,12 @@ void Config::Load()
     {
         LOG("Failed opening config!");
         return;
+    }
+
+    // Clear the workspace symbols.
+    // This prevents the situation where a workspace symbol is remove from the config and the config is reloaded but the symbol not reset to default.
+    for (int i = 0; i < 9; i++) {
+         config.workspaceSymbols[i] = "";
     }
     std::string line;
     while (std::getline(file, line))
